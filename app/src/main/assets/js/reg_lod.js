@@ -11,11 +11,10 @@ email="",//邮箱
 pw="",//密码
 reg_loca="",//网络地理位置
 imei="",//手机唯一imei号
-model=""，//手机型号
+model="",//手机型号
 password = document.getElementById("password");//密码框
-password.addEventListener('input',PasswordInput,false);//密码框输入事件
 function PasswordInput(){
-            pw= passWord.value;
+            pw= password.value;
 			var label-danger=document.getElementById("label-danger"),
 			label-warning=document.getElementById("label-warning"),
 			label-success=document.getElementById("label-success"),
@@ -27,11 +26,11 @@ function PasswordInput(){
                //密码强度为强正则表达式
             var high = /(^[a-zA-Z\d]{6,16}$)|(^[a-zA-Z_]{6,16}$)|(^[a-z\d_]{6,16}$)(^[A-Z\d_]{6,16}$)|(^[a-zA-Z\d_]{6,16}$)/g;
             if (low.test(pw)) {  //low.test(passcord) 如果满足low正则表达式，则返回true
-			label-dangerstyle.display = "block";
+			label-dangerstyle.style.display = "block";
 			label-warning.style.display = "none";
 			label-success.style.display = "none";
             } else if (middle.test(pw)) {     //如果满足middle正则表达式，则返回true
-			label-dangerstyle.display = "none";
+			label-dangerstyle.style.display = "none";
 			label-warning.style.display = "block";
 			label-success.style.display = "none";
 
@@ -60,6 +59,7 @@ function PasswordInput(){
 
 function SetMobileID(i,m){imei=i;model=m;document.getElementById("imei").innerHTML="您的账号将绑定此手机设备:"+m;}//设置手机imei和型号
 $(document).ready(function(){
+password.addEventListener('input',PasswordInput,false);//密码框输入事件
 function getloca(){//获取地理位置
 		$.get("http://42.51.158.129/php/get_loca.php",function(data,status){
 		data=eval("("+data+")");
