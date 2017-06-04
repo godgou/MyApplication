@@ -1,0 +1,38 @@
+
+{
+	"buildFiles" : [ "G:/Android/MyApplication/app/CMakeLists.txt" ],
+	"cleanCommands" : 
+	[
+		"G:\\Android\\cmake\\3.6.3155560\\bin\\cmake.exe --build G:\\Android\\MyApplication\\app\\.externalNativeBuild\\cmake\\debug\\x86 --target clean"
+	],
+	"cppFileExtensions" : [ "cpp" ],
+	"libraries" : 
+	{
+		"native-lib-Debug-x86" : 
+		{
+			"abi" : "x86",
+			"artifactName" : "native-lib",
+			"buildCommand" : "G:\\Android\\cmake\\3.6.3155560\\bin\\cmake.exe --build G:\\Android\\MyApplication\\app\\.externalNativeBuild\\cmake\\debug\\x86 --target native-lib",
+			"buildType" : "debug",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  -target i686-none-linux-android -gcc-toolchain G:/Android/ndk-bundle/toolchains/x86-4.9/prebuilt/windows-x86_64 --sysroot=G:/Android/ndk-bundle/platforms/android-19/arch-x86  -Dnative_lib_EXPORTS -isystem G:\\Android\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem G:\\Android\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\x86\\include -isystem G:\\Android\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti  -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "G:/Android/MyApplication/app/src/main/cpp/native-lib.cpp",
+					"workingDirectory" : "G:/Android/MyApplication/app/.externalNativeBuild/cmake/debug/x86"
+				}
+			],
+			"output" : "G:/Android/MyApplication/app/build/intermediates/cmake/debug/obj/x86/libnative-lib.so",
+			"toolchain" : "554343849"
+		}
+	},
+	"toolchains" : 
+	{
+		"554343849" : 
+		{
+			"cCompilerExecutable" : "G:/Android/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe",
+			"cppCompilerExecutable" : "G:/Android/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe"
+		}
+	}
+}

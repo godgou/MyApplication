@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<title>GG-聊天室</title>
+<head>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta content="email=no" name="format-detection" />
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="chat.css"/>
+    <script src="../js/jquery-1.12.4.main.js"></script>
+    <script src="chat.js"></script>
+    <style id="NewCss">
+    </style>
+</head>
+
+<body>
+<div class="title">
+    <img src="../image/32x32.png" width="24px" height="24px" style="vertical-align: middle;">公共聊天室 ✚
+</div>
+<div id="main">
+
+    <div class="other">
+        <p class="date">2016-11-04 15:12:23 星期5</p>
+    <fieldset>
+        <legend><img src="../image/32x32.png"><strong>我是女一号</strong>
+        </legend>
+        <div>
+           去哪??明天去哪??明天去哪?
+        </div>
+    </fieldset>
+    </div>
+
+    <div class="my">
+        <p class="date">2016-11-04 15:12:23 星期6</p>
+    <fieldset>
+        <legend><strong>my name is 卢其洪</strong><img src="../image/32x32.png"></legend>
+        <div>
+            <video onclick="PlayVideo(this)" preload="metadata" onprogress="DownLoad(this)" onloadedmetadata="LoadData(this)" ontimeupdate="TimeUpDate(this)" onended="VideoEnd(this)" src="http://www.webkkl.com/api-v/material/sample.mp4">
+            </video><div onclick="playPause(this)" class="VideoControls">▶</div><input  type="range" onchange="RangeChange(this)" min="0" max="100" value="0" />
+
+            <span>00:00</span>/<span>?:?</span>
+            <canvas width=100 height="5" style="box-shadow:inset 0px 0px 5px #999999;"></canvas>
+        </div>
+    </fieldset>
+        </div>
+    <div class="other">
+        <p class="date">2016-11-04 15:12:23 星期6</p>
+    <fieldset>
+        <legend><img src="../image/32x32.png"><strong>我是男一号</strong></legend>
+        <div>
+            <video src="http://www.runoob.com/try/demo_source/mov_bbb.mp4" controls>
+            </video>
+            <video src="http://www.webkkl.com/api-v/material/sample.mp4" controls>
+            </video>
+        </div>
+    </fieldset>
+
+        </div>
+</div>
+
+<div id="bottom">
+    <div id="input" contenteditable="true">
+    </div>
+    <input type=button id="send" value="➤"><input type=button id="delall" value="✘"><input type=button id="flex" value="✚">
+<div id="skill"><input type=button id="getimg" value="图片"><input type=button id="PhotoGraph" value="拍照"><input type=button id="VideoTape" value="录像">
+    <div><img src="emoji/26.gif" id="emoji"><img src="video/video.png"></div>
+</div>
+</div>
+</body>
+
+</html>
