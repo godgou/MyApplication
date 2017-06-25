@@ -1,6 +1,12 @@
 ﻿
 $(document).ready(function(){
 /*-------------------------------注册登陆------------------------------------*/
+$('#login').click(function(){
+		$.get("http://42.51.158.129/php/get_loca.php",function(data){
+		alert(data)
+		if(data['result']=="0"){alert(data['loca']);}else{alert("未知");}
+        });
+});
 $("#register").click(function(){
 window.open("file:///android_asset/reg_lod/register.html");
 });//注册

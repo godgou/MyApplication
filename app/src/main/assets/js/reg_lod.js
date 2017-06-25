@@ -41,6 +41,12 @@ function PasswordInput(){//密码输入框内容改变事件
 
 function SetMobileID(i,b){imei=i;brand=b;document.getElementById("label_phone").innerHTML="您的账号将绑定此手机设备:"+b;}//设置手机imei和型号
 $(document).ready(function(){
+		$.get("http://42.51.158.129/php/get_loca.php",function(data){//获取网络地理位置
+		if(data['result']=="0"){reg_loca=data['loca'];}
+		else{
+		reg_loca="未知";}
+        });
+
 
 $("#gcb").click(function(){//获取手机验证码
 if($("#label_phone").attr("class")!="label label-success"){
@@ -48,10 +54,10 @@ $("#label_phone").html("手机号码有误无法获取验证码");
 $("#label_phone").attr("class","label label-danger");return;}
 $("#gcb").css("background-color","rgba(0,0,0,0.3)");
 $("#gcb").attr('disabled',"true");//添加disabled属性
-var countdown=120,GoCode=setInterval(GoToCode,1000);
+var countdown01=120,GoCode=setInterval(GoToCode,1000);
 function GoToCode(){
-$("#gcb").val("获取验证码("+countdown+")");countdown--;
-if(countdown==0){
+$("#gcb").val("获取验证码("+countdown01+")");countdown01--;
+if(countdown01==0){
 $("#gcb").val("获取验证码");clearInterval(GoCode);
 $("#gcb").css("background-color","rgba(255,255,255,0.5)");
 $("#gcb").removeAttr("disabled"); //移除disabled属性
@@ -89,12 +95,6 @@ $.post("http://42.51.158.129/php/app_loading.php",//检查手机号码是否已�
     });
 
 });
-
-function getloca(){//获取地理位置
-		$.get("http://42.51.158.129/php/get_loca.php",function(data){
-		if(data['result']=="0"){return data['loca'];}else{return "未知";}
-        });
-}
 $("#register").click(function(){//发送注册信息
 if($("#label_name").attr("class")=="label label-success"&&
 $("#label_phone").attr("class")=="label label-success"&&
@@ -104,21 +104,17 @@ $("#label_agreement").attr("class")=="label label-success"){
 
 $("#register").css("background-color","rgba(0,0,0,0.3)");
 $("#register").attr('disabled',"true");//添加disabled属性
-	
-reg_loca=getloca();//网络地理位置
-d_t= new Date(),dt=d_t.getTime();
 
-
-var countdown=60,gogo=setInterval(gogogo,1000);
+var d_t= new Date(),dt=d_t.getTime(),countdown02=60,gogo=setInterval(gogogo,1000);
 function gogogo(){
-	if(countdown==0){clearInterval(gogo);
+	if(countdown02==0){clearInterval(gogo);
 	pop("服务器无响应，请重试");
 	$("#register").html("注册");
 	$("#register").css("background-color","rgba(255,255,255,0.5)");
     $("#register").removeAttr("disabled"); //移除disabled属性
 	}//停止
-	$("#register").html("重新注册("+countdown+")");
-	countdown--;
+	$("#register").html("重新注册("+countdown02+")");
+	countdown02--;
 }//倒数60秒后才可以重新注册
 
 		$.post("http://42.51.158.129/php/app_loading.php",{//发出注册请求
@@ -164,8 +160,13 @@ $("#label_agreement").html("您必须同意用户服务协议,否则您无权注
 	}
 });
 //---------------------自定义函数----------------
+function getloca(){//获取地理位置
+		$.get("http://42.51.158.129/php/get_loca.php",function(data){
+		if(data['result']=="0"){return data['loca'];}else{return "未知";}
+        });
+}
 function pop(text){//模态框
-$('.modal-body').html(text);$('#myModal').modal();$('.modal-content').css("top",$(window).height()/3+"px");
+$('.modal-body').html(text);$('#myModal').modal();$('.modal-content').css("top",$(window).height()/3+"px");$('#myModalLabel').text('注册成功');
 }
 $('#myModal').on('hide.bs.modal', function () {//当调用 hide 实例方法时触发。
 if($('#myModalLabel').text()=='注册成功'){window.open("file:///android_asset/reg_lod/login.html");}
