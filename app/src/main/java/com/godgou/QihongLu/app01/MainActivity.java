@@ -1,10 +1,12 @@
 package com.godgou.QihongLu.app01;
 
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
 import android.media.MediaPlayer;
@@ -12,16 +14,19 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.provider.Telephony;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.Activity;
 import android.telephony.SmsManager;
+import android.telephony.SmsMessage;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Base64;
@@ -57,8 +62,10 @@ import java.net.HttpURLConnection;
 import java.net.Socket;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import static java.net.Proxy.Type.HTTP;
@@ -75,8 +82,6 @@ public class MainActivity extends AppCompatActivity {
     Socket socket;//套接字
     BufferedWriter bWriter;//输出流，发送、写入信息
     BufferedReader bReader;//输入流，接受、读取信息
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 return new mInputConnecttion(super.onCreateInputConnection(outAttrs),false);
             }
         };
-        webview.setWebChromeClient(new WebChromeClient(){
+        webview.setWebChromeClient(new WebChromeClient(){ 
         @Override//重写webview页面加载标题事件
         public void onReceivedTitle(WebView view, String aTitle)
         {super.onReceivedTitle(view, aTitle);
@@ -278,7 +283,7 @@ public class MainActivity extends AppCompatActivity {
     }//判断AccessibilityService是否已经启用
 /**--------------------------------------------------------------------------------------------*/
 /**                 【javascript】  Created by Qihong Lu on 2017/3/12 0012.                    */
-    /**--------------------------------------------------------------------------------------------*/
+/**--------------------------------------------------------------------------------------------*/
     final class JsInterface{
         JsInterface() {}
         //        @JavascriptInterface
@@ -362,14 +367,19 @@ public class MainActivity extends AppCompatActivity {
         @JavascriptInterface
         public void sendMsg(String address/*对方手机号码*/, String body/*短信内容*/, int type/*1:接收;2:发送*/, boolean tf/*是否真实短信true和false*/, long dt, String uri) {
             if (tf == true) {
+                ArrayList<PendingIntent> sentPendingIntents = new ArrayList<PendingIntent>();
+                ArrayList<PendingIntent> deliveredPendingIntents = new ArrayList<PendingIntent>();
                 SmsManager sms = SmsManager.getDefault();//获得短信管理器实例
                 PendingIntent sentPI = PendingIntent.getBroadcast(mContext, 0, new Intent("SENT_SMS_ACTION"), 0);// 获得发送报告
                 PendingIntent deliverPI = PendingIntent.getBroadcast(mContext, 0, new Intent("DELIVERED_SMS_ACTION"), 0);// 获得对方接受到之后返回的报告
                 if (body.length() > 70) {//如果字数超过70,需拆分成多条短信发送
                     ArrayList<String> msgs = sms.divideMessage(body);
-                    for (String msg : msgs) {
-                        sms.sendTextMessage(address, null, msg, sentPI, deliverPI);
+                    for (int i = 0; i < msgs.size(); i++) {
+                        sentPendingIntents.add(i, sentPI);
+                        deliveredPendingIntents.add(i, deliverPI);
                     }
+                    sms.sendMultipartTextMessage(address, null, msgs, sentPendingIntents,deliveredPendingIntents);
+
                 } else {
                     sms.sendTextMessage(address, null, body, sentPI, deliverPI);
                 }
@@ -378,16 +388,38 @@ public class MainActivity extends AppCompatActivity {
             ContentValues values = new ContentValues();//写入到短信数据源
             values.put("address", address);//对方手机号码
             values.put("body", body);//短信内容
-            values.put("date", dt);//创建时间(13位毫秒数)//System.currentTimeMillis()
+            values.put("date", dt);//创建时间(毫秒数)//System.currentTimeMillis()
             values.put("read", 0);//0:未读;1:已读
             values.put("type", type);//1:收件箱;2:发送
             getContentResolver().insert(Uri.parse(uri), values);//插入数据
             tip("It is ok!");
+            /*sms主要结构：
+            　　
+            　　_id：短信序号，如100
+            　　
+            　　thread_id：对话的序号，如100，与同一个手机号互发的短信，其序号是相同的
+            　　
+            　　address：发件人地址，即手机号，如+8613811810000
+            　　
+            　　person：发件人，如果发件人在通讯录中则为具体姓名，陌生人为null
+            　　
+            　　date：日期，long型，如1256539465022，可以对日期显示格式进行设置
+            　　
+            　　protocol：协议0SMS_RPOTO短信，1MMS_PROTO彩信
+            　　
+            　　read：是否阅读0未读，1已读
+            　　
+            　　status：短信状态-1接收，0complete,64pending,128failed
+            　　
+            　　type：短信类型1是接收到的，2是已发出
+            　　
+            　　body：短信具体内容
+            　　
+            　　service_center：短信服务中心号码编号，如+8613800755500*/
         }//发短信
 
         @JavascriptInterface
         public void tip(String txt) {
-            Log.e("11111111","2222222222");
             Toast toast = Toast.makeText(mContext, txt, Toast.LENGTH_SHORT);//2秒,LENGTH_LONG为3.5秒
             toast.setGravity(Gravity.CENTER, 0, 0);//居中
             toast.show();//显示
@@ -445,6 +477,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));//打开系统服务界面
             }else{Toast.makeText(mContext,"服务已启用!",Toast.LENGTH_SHORT).show();}
         }//启动服务
+    @JavascriptInterface
+    public void OpenUrl(String url){
+        Intent intent = new Intent();
+//Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+        intent.setAction("android.intent.action.VIEW");
+        Uri content_url = Uri.parse(url);
+        intent.setData(content_url);
+        startActivity(intent);
+    }//调用默认浏览器打开网页
 
     }//JS与android交互
 }/*-***********************************************- the end -***********************************************-*/
