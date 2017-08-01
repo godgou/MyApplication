@@ -1,8 +1,17 @@
 ﻿
 html,body{background:url('../image/bg.jpg');width:100%; min-width:100%; margin:0 auto;overflow-x:hidden;}
-.title{width:100%;height:2.5rem;line-height:2.5rem;top:0px;text-align:center;font-size:2rem;
-background-color: rgba(0,0,255,0.5);box-shadow: 0px 5px 20px #000000;
+.title{width:100%;height:48px;font-size:24px;display: flex ;
+flex-direction: row ;
+flex-wrap: wrap ;
+justify-content:space-around;
+align-items: center ;
+align-content: center ;
+background-color: rgba(0,0,255,0.5);
+box-shadow: 0px 5px 20px #000000;
+position:fixed;
+top:0px;
 }
+.title_next{height:48px;width:100%;}
 fieldset {
     border-left:0px;
     border-right:0px;
@@ -24,3 +33,16 @@ legend {
 fieldset table {width:100%;}
 fieldset table tr th{text-align:center;}
 fieldset table tr th img{display:block;margin:0 auto;}
+
+.footer{width:100%;height:48px;display: flex ;
+flex-direction: row ;
+flex-wrap: wrap ;
+justify-content:space-around;
+align-items: center ;
+align-content: center ;
+background-color: rgba(0,0,255,0.5);
+box-shadow: 0px 5px 20px #000000;
+position:fixed;
+bottom:0px;
+}
+.footer>div{padding:1px 9px;text-align:center;color:#4100ff;text-shadow:0px 2px 5px #ffffff;box-shadow:0px 0px 5px #ffffff;}

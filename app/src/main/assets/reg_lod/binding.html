@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+<title>GG-绑定</title>
+<head>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/reg_lod.css"/>
+    <script src="../js/jquery-1.12.4.main.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/binding.js"></script>
+
+</head>
+<body>
+    <div class="title"><div class="titlestyle" style="margin-left:10px;" onclick="window.open('file:///android_asset/reg_lod/login.html');">⏎</div>
+	<div class="title3d">GG-绑定</div>
+	<div class="titlestyle" style="margin-right:10px;" onclick="window.open('file:///android_asset/main.html');">💒</div>
+	</div>
+    <hr/>
+    <input id="account" type="tel" class="input01" placeholder="uid或手机号码" maxlength="11" oninput="AccountInput()">
+    <br/>
+    <strong id="label_account" class="label label-info">账号是您申请的uid或手机号码</strong>
+    <hr/>
+    <input id="password" type="password" class="input01" placeholder="请输入您的密码" maxlength="16" oninput="PasswordInput()">
+    <br/>
+    <strong id="label_password" class="label label-info">8-16个字符,数字和字母组合,区分大小写</strong>
+    <hr/>
+	<div id="v_container" style="width: 200px;height: 50px;margin:0 auto"></div>
+    <input type="text" id="code_input" value="" class="input01" placeholder="4位图片验证码" oninput="verifyInput()" style="width:50%;">
+	<br/>
+	<strong id="label_verify" class="label label-info">请输入图片中的4位验证码</strong>
+	<script src="../js/gVerify.js"></script>
+	<script>
+	var verifyCode = new GVerify("v_container");//图片验证码
+
+function verifyInput(){
+            var res = verifyCode.validate(document.getElementById("code_input").value),
+			label_verify=document.getElementById("label_verify");
+            if(res){
+                label_verify.setAttribute("class","label label-success");
+                label_verify.innerHTML="验证码正确";
+            }else{
+                label_verify.setAttribute("class","label label-danger");
+	            label_verify.innerHTML="验证码错误";
+            }}
+			</script>
+	<hr/>
+    <input id="binding" type="button" class="button" value="绑定">
+	
+	<!--模态框-->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog" id="modal-dialog">
+		<div class="modal-content">
+		<div class="modal-header" style="padding:3px;">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color:red;">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">神狗GG(godgou.com)</h4>
+			</div>
+			<div class="modal-body">
+			</div>
+			<div class="modal-footer" style="text-align:center;padding:3px;">
+				<button type="button" class="btn btn-default" data-dismiss="modal">确定
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+<!--加载动画-->
+<div class="loading">
+<div class="loading_wrapp">
+<div class="load-1">
+<p><strong>正 在 绑 定</strong></p>
+<div class="k-line k-line2-1"></div>
+<div class="k-line k-line2-2"></div>
+<div class="k-line k-line2-3"></div>
+</div>
+</div>
+</div>
+
+</body>
+</html>

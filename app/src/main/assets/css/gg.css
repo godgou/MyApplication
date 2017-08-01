@@ -1,0 +1,49 @@
+﻿/*对话框  start*/
+.modal-content{border:solid 2px rgba(255, 0, 0, 0.5);background-color: rgba(255, 255, 255, 0.5);box-shadow: 0px 0px 30px rgba(255, 0, 0, 0.5);}
+.btn-default{background-color: rgba(255, 0, 0, 0.1);border-color: rgba(255, 0, 0, 0.5);}
+.modal-header{border-bottom: 1px solid rgba(255, 0, 0, 0.3);}
+.modal-footer{border-top: 1px solid rgba(255, 0, 0, 0.3);}
+.close{opacity:0.8;}
+/*对话框 end*/
+/*加载动画 start*/
+.loading{
+	position:fixed;
+    text-align:center;
+	top:0px;
+	left:0px;
+	z-index:666;
+	width:100%;
+	display:none;
+    justify-content:center;
+    align-items:center;
+	}
+.loading_wrapp {
+	width:150px;
+	height:100px;
+	padding:10px 10px 10px;
+	border-radius:5px;
+	background:rgba(0,0,0,0.7);
+	box-shadow: 0px 0px 30px #000000;
+}
+.loading_wrapp p,.loading_wrapp i {
+	color:#4b9cdb;
+}
+/*加载动画 end*/
+/*横条样式*/
+input[type=range] {
+  -webkit-appearance: none;/*清除系统默认样式*/
+  outline: none;
+  background: -webkit-linear-gradient(#42ff00, #42ff00) no-repeat, #b7b7b7;/*设置左边颜色为#61bd12，右边颜色为#ddd*/
+  height: 5px;/*横条的高度*/
+  border-radius:5px;
+}
+/*拖动块的样式*/
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;/*清除系统默认样式*/
+  height: 26px;/*拖动块高度*/
+  width: 26px;/*拖动块宽度*/
+  background: #fff;/*拖动块背景*/
+  border-radius: 50%; /*外观设置为圆形*/
+  border: solid 1px #ddd; /*设置边框*/
+  box-shadow:0px 0px 5px #42ff00;
+}

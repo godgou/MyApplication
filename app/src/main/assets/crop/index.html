@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+  <title>Cropper</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/gg.css">
+  <link rel="stylesheet" href="css/cropper.css">
+  <link rel="stylesheet" href="css/main.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../js/swiper.jquery.min.js"></script>
+    <script src="../js/gg.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../cos/demo/docs.min.css">
+    <script src="../cos/demo/crypto.js"></script>
+    <script type="text/javascript" src="../cos/dist/cos-js-sdk-v4.js"></script>
+
+</head>
+<body>
+<!--裁剪弹窗start-->
+<div class="crop_window">
+    <div class="col-md-9 docs-buttons crop_img">
+        <!-- 工具栏 -->
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" data-method="scaleX" data-option="-1">
+              <span class="fa fa-arrows-h"></span>
+          </button>
+          <button type="button" class="btn btn-primary" data-method="scaleY" data-option="-1">
+              <span class="fa fa-arrows-v"></span>
+          </button>
+        </div>
+
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" data-method="reset">
+              <span class="fa fa-refresh"></span>
+          </button>
+          <label class="btn btn-primary btn-upload" for="inputImage">
+            <input type="file" class="sr-only" id="inputImage" name="file" accept="image/*" multiple />
+              <span class="fa fa-upload"></span>
+          </label>
+        </div>
+        <!-- 预览图 start-->
+        <div class="img-preview"></div>
+        <!-- 预览图 end-->
+        <div class="btn-group btn-group-crop">
+          <button type="button" class="btn btn-primary" data-method="getCroppedCanvas" data-option="{ &quot;width&quot;: 64, &quot;height&quot;: 64 }">
+              OK
+          </button>
+        </div>
+    </div><!-- 工具栏end -->
+<!-- 控制旋转图像滑块条-->
+<div style="margin:0 auto;width:90%;height:36px;display: flex;">
+<input type="range" id="rotate_img01" oninput="rotate_img01()" min="0" value="180" max="360" style="background-size: 50% 100%;margin:auto; "/>
+</div>
+  <!-- Content -->
+        <!-- 原图 -->
+        <div class="img-container">
+          <img id="image" src="images/picture.png" alt="Picture">
+        </div>
+    </div>
+<!--裁剪弹窗end-->
+  <!-- Scripts -->
+<script src="js/cropper.js"></script>
+<script src="js/main.js"></script>
+<script>
+  /*---------------------------------头像剪裁相关---------------------------------------*/
+  var rotate_deg01=180;
+  function rotate_img01(){
+//$("#inputImage").trigger("click");
+  var i=$("#rotate_img01").val()-rotate_deg01,
+  ii=$("#rotate_img01").val()*100/360;
+  $("#rotate_img01").css("background-size",ii+"% 100%");
+  rotate_deg01=$("#rotate_img01").val();
+
+      $('#image').cropper('rotate',i);
+  }
+
+</script>
+<!------------------------------------------------>
+<div class="bs-docs-header" id="content">
+<input id="Show_CropWindow" type="file" value="show"/>
+    <div class="row" style="padding:20px;">
+        <textarea id="result" rows="20" cols="100">1.使用js-sdk前请记得到console.qcloud.com/cos 找到对应的bucket进行跨域设置;
+2.请您修改本页面里的部分代码，把appid,bucket,region,secretId,secretKey填上，确保正确后再运行示例里的代码;
+3.本程序仅用于示例，所以在浏览器端暴露了secretId和secretKey直接计算签名，实际的线上业务请您自己部署获取签名的服务以确保自己的密钥和业务安全        </textarea>
+    </div>
+</div>
+<!------------------------------------------------>
+
+</body>
+</html>

@@ -5,55 +5,34 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/animate.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/gg.css">
     <link rel="stylesheet" href="../css/reg_lod.css"/>
     <script src="../js/jquery-1.12.4.main.js"></script>
     <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/reg_lod.js"></script>
+    <script src="../js/gg.js"></script>
+    <script src="../js/login.js"></script>
 
 </head>
 <body>
+    <div class="title"><div class="titlestyle fa fa-chevron-left" style="margin-left:10px;" onclick="window.open('file:///android_asset/main.html');"></div>
+	<div class="title3d">GG-登入</div>
+	<div class="titlestyle fa fa-home" style="margin-right:10px;" onclick="window.open('file:///android_asset/main.html');"></div>
+	</div>
     <hr/>
-    <input id="phone" type="tel" class="input01" placeholder="请输入您的手机号码" maxlength="11" oninput="PhoneInput()">
+    <input id="account" type="tel" class="input01" placeholder="uid或手机号码" maxlength="11" oninput="AccountInput()">
     <br/>
-    <strong id="label_phone" class="label label-info">此手机号将与您当前的手机设备绑定</strong>
-	<br/>
-	<input id="GgCode" type="number" class="input01" placeholder="6位手机验证码" maxlength="6" oninput="GgCodeInput()" style="width:45%;margin-top:2px;vertical-align:middle;">
-    <input id="gcb" type="button" class="button" value="获取验证码">
-	<br/>
-    <strong id="label_gcb" class="label label-info">请输入6位手机验证码</strong>
+    <strong id="label_account" class="label label-info">账号是您申请的uid或手机号码</strong>
     <hr/>
     <input id="password" type="password" class="input01" placeholder="请输入您的密码" maxlength="16" oninput="PasswordInput()">
     <br/>
     <strong id="label_password" class="label label-info">8-16个字符,数字和字母组合,区分大小写</strong>
     <hr/>
-    <input id="name" class="input01" placeholder="请输入您的昵称" maxlength="10" oninput="NameInput()">
-    <br/>
-    <strong id="label_name" class="label label-info">1-10个字符,中文,字母,数字</strong>
+    <input type="button" class="button" value="登入" onclick="gg_pop('111')">
     <hr/>
-	<span id="checkbox00"><strong id="checkbox">[✘]</strong><strong style="font-size:19px;">同意</strong></span>
-	<a onclick='window.android.OpenUrl("http://godgou.com/agreement/register.html")'>用户服务协议>></a>
-    <br/>
-    <strong id="label_agreement" class="label label-danger">您必须同意用户服务协议,否则您无权注册</strong>
-    <hr/>
-    <input id="register" type="button" class="button" value="登入">
-	
-	<!--模态框-->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog" id="modal-dialog">
-		<div class="modal-content">
-		<div class="modal-header" style="padding:3px;">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color:red;">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">神狗GG(godgou.com)</h4>
-			</div>
-			<div class="modal-body">
-			</div>
-			<div class="modal-footer" style="text-align:center;padding:3px;">
-				<button type="button" class="btn btn-default" data-dismiss="modal">确定
-				</button>
-			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal -->
-</div>
+	    <input type="button" class="button" onclick="window.open('file:///android_asset/reg_lod/register.html');" value="注册">
+		    <input type="button" class="button" onclick="window.open('file:///android_asset/reg_lod/change_pw.html');" value="找回密码">
 
 </body>
 </html>

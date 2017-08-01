@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
-<title>GG-注册</title>
+<title>GG-更改密码</title>
 <head>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <meta charset="UTF-8"/>
@@ -8,18 +8,18 @@
     <link rel="stylesheet" href="../css/reg_lod.css"/>
     <script src="../js/jquery-1.12.4.main.js"></script>
     <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/register.js"></script>
+    <script src="../js/change_pw.js"></script>
 
 </head>
 <body>
     <div class="title"><div class="titlestyle" style="margin-left:10px;" onclick="window.open('file:///android_asset/reg_lod/login.html');">⏎</div>
-	<div class="title3d">GG-注册</div>
+	<div class="title3d">GG-更改密码</div>
 	<div class="titlestyle" style="margin-right:10px;" onclick="window.open('file:///android_asset/main.html');">💒</div>
 	</div>
-    <hr/>
+	<hr/>
     <input id="phone" type="tel" class="input01" placeholder="请输入您的手机号码" maxlength="11" oninput="PhoneInput()">
     <br/>
-    <strong id="label_phone" class="label label-info">此手机号将与您当前的手机设备绑定</strong>
+    <strong id="label_phone" class="label label-info">此手机号将接受短信验证码</strong>
 	<hr/>
 	<div id="v_container" style="width: 200px;height: 50px;margin:0 auto"></div>
     <input type="text" id="code_input" value="" class="input01" placeholder="4位图片验证码" oninput="verifyInput()" style="width:45%;">
@@ -46,19 +46,11 @@ function verifyInput(){
 	<br/>
     <strong id="label_gcb" class="label label-info">请输入6位手机验证码</strong>
     <hr/>
-    <input id="password" type="password" class="input01" placeholder="请输入您的密码" maxlength="16" oninput="PasswordInput()">
+    <input id="password" type="password" class="input01" placeholder="请输入您的新密码" maxlength="16" oninput="PasswordInput()">
     <br/>
     <strong id="label_password" class="label label-info">8-16个字符,数字和字母组合,区分大小写</strong>
     <hr/>
-    <input id="name" class="input01" placeholder="请输入您的昵称" maxlength="10" oninput="NameInput()">
-    <br/>
-    <strong id="label_name" class="label label-info">1-10个字符,中文,字母,数字</strong>
-    <hr/>
-	<span id="to_agreement"><strong id="checkbox">[✘]</strong><a>用户服务协议>></a></span>
-    <br/>
-    <strong id="label_agreement" class="label label-danger">您必须同意用户服务协议,否则您无权注册</strong>
-    <hr/>
-    <input id="register" type="button" class="button" value="注册">
+    <input id="change_pw" type="button" class="button" value="更改密码">
 	
 	<!--模态框-->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -77,32 +69,14 @@ function verifyInput(){
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal -->
 </div>
-	<!--用户协议模态框-->
-	<div class="modal fade" id="myModal02" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-		<div class="modal-header" style="padding:3px;">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color:red;">&times;</button>
-				<h4 class="modal-title" id="myModalLabel02">GG用户服务协议</h4>
-			</div>
-			<div class="modal-body" style="padding:0px;">
-			<iframe src="http://godgou.com/agreement/register.html" style="border-width:0px;width:100%;"></iframe>
-			</div>
-			<div class="modal-footer" style="text-align:center;padding:3px;">
-				<button type="button" class="btn btn-default" data-dismiss="modal" id="yesagreement">同意</button>
-				<button type="button" class="btn btn-default" data-dismiss="modal" id="noagreement">不同意</button>
-			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal -->
-</div>
 <!--加载动画-->
 <div class="loading">
 <div class="loading_wrapp">
-<div class="load-2">
-<p><strong>正 在 注 册</strong></p>
-<div class="k-line k-line2-1"></div>
-<div class="k-line k-line2-2"></div>
-<div class="k-line k-line2-3"></div>
+<div class="load-1">
+<p><strong>正 在 更 改</strong></p>
+<div class="k-line k-line5-1"></div>
+<div class="k-line k-line5-2"></div>
+<div class="k-line k-line5-3"></div>
 </div>
 </div>
 </div>

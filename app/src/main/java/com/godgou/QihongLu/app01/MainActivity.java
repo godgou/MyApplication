@@ -46,6 +46,8 @@ import android.widget.Toast;
 
 import com.google.common.base.Utf8;
 
+import org.json.JSONObject;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         System.loadLibrary("native-lib");
     }
     Calendar calendar = Calendar.getInstance();//时间
+	String Userdata="";//用户数据
     String WebTitle="";
     Context mContext = this;
     WebView webview;////网页视图
@@ -114,13 +117,19 @@ public class MainActivity extends AppCompatActivity {
             }//设置在webView点击打开的新网页在当前界面显示,而不跳转到新的浏览器中
             @Override
             public void onPageFinished(WebView view, String url) {//页面加载完成事件
-                if(url.equals("file:///android_asset/reg_lod/register.html")){//注册
+                if(url.equals("file:///android_asset/reg_lod/register.html")||//注册
+				   url.equals("file:///android_asset/reg_lod/login.html")||
+				   url.equals("file:///android_asset/reg_lod/binding.html")){//登陆
                     TelephonyManager tm = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
                 String DEVICE_ID = tm.getDeviceId();//imei
                 String Model=android.os.Build.MODEL;//手机型号
                 webview.loadUrl("javascript:SetMobileID('"+DEVICE_ID+"','"+Model+"')");
-                //'" + DEVICE_ID + "','"+Model + "'
             }//设置手机imei和型号
+
+                if(url.equals("file:///android_asset/reg_lod/my.html")){//个人中心
+                    webview.loadUrl("javascript:SetUserData("+Userdata+")");
+                    Log.e("ssss",Userdata);
+                }//设置个人资料
 
             }
         });
@@ -486,6 +495,10 @@ public class MainActivity extends AppCompatActivity {
         intent.setData(content_url);
         startActivity(intent);
     }//调用默认浏览器打开网页
+    @JavascriptInterface
+    public void UserData(String data){
+            Userdata=data;
+    }//设置或获取用户资料
 
     }//JS与android交互
 }/*-***********************************************- the end -***********************************************-*/

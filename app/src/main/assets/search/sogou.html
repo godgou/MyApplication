@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<title>GG-搜狗搜索</title>
+<head>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/search.css">
+    <script src="../js/jquery-1.12.4.main.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/search.js"></script>
+
+</head>
+<body>
+<div style="height:55px;width:100%;"></div>
+<div class="title">
+<input id="url" type="text" class="input01" placeholder="请输入您想要访问的网站地址">
+    <i class="fa fa-chevron-right" id="tourl"></i>
+</div>
+<iframe id="iframe" src="https://m.sogou.com/" frameborder="no" border="0"></iframe>
+<!--底部-->
+<div style="height:55px;width:100%;"></div>
+<div class="footer">
+    <div class="animated rubberBand"><i class="fa fa-home"></i><br/>主页</div>
+    <div><i class="fa fa-handshake-o"></i><br/>合作</div>
+    <div onclick="window.open('file:///android_asset/reg_lod/my.html')"><i class="fa fa-user"></i><br/>我的</div>
+    <div class="dropup" style="text-shadow:0px 0px 5px #00ff94;box-shadow:0px 0px 15px #00ff94;">
+        <div data-toggle="dropdown"><i class="fa fa-search"></i><br/>搜索</div>
+        <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="menu3">
+            <li onclick="iframe('http://wap.baidu.com/')" role="presentation" ><a role="menuitem" tabindex="-1">百度搜索</a></li>
+            <li role="presentation" class="divider"></li>
+            <li onclick="iframe('https://m.sogou.com/')" role="presentation"><a role="menuitem" tabindex="-1">搜狗搜索</a></li>
+            <li role="presentation" class="divider"></li>
+            <li onclick="iframe('http://m.so.com/')" role="presentation"><a role="menuitem" tabindex="-1">360搜索</a></li>
+            <li role="presentation" class="divider"></li>
+            <li onclick="iframe('http://cn.bing.com/')" role="presentation"><a role="menuitem" tabindex="-1">必应搜索</a></li>
+            <hr style="height:1px;border:none;border-top:1px dashed #0066CC;margin:2px;"/>
+            <li onclick="iframe('http://i.ifeng.com/')" role="presentation"><a role="menuitem" tabindex="-1">凤凰资讯</a></li>
+            <li role="presentation" class="divider"></li>
+            <li onclick="iframe('http://m.huanqiu.com/')" role="presentation"><a role="menuitem" tabindex="-1">环球新闻</a></li>
+            <li role="presentation" class="divider"></li>
+            <li onclick="iframe('https://news.sina.cn/')" role="presentation"><a role="menuitem" tabindex="-1">新浪新闻</a></li>
+        </ul>
+    </div>
+    <div><i class="fa fa-navicon"></i><br/>更多</div>
+</div>
+</body>
+</html>
